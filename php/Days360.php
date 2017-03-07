@@ -22,7 +22,7 @@ class Days360{
     /*
      * Methods available: US, US_NASD, EU
      */
-    public function days360(\DateTime $date_a, \DateTime $date_b, $method = 'US') {
+    public function days360(DateTime $date_a, DateTime $date_b, $method = 'US') {
         
         if($method == 'US')
         {
@@ -55,7 +55,7 @@ class Days360{
      *  Implementation as given by http://en.wikipedia.org/w/index.php?title=360-day_calendar&oldid=546566236 * 
      * 
      */
-    public function days360_US_NASD(\DateTime $date_a, \DateTime $date_b)
+    public function days360_US_NASD(DateTime $date_a, DateTime $date_b)
     {
         return $this->days360_US($date_a, $date_b, FALSE);
     }
@@ -65,7 +65,7 @@ class Days360{
      *
      * Implementation as given by http://en.wikipedia.org/w/index.php?title=360-day_calendar&oldid=546566236
      */
-    public function days360_EU(\DateTime $date_a, \DateTime $date_b){
+    public function days360_EU(DateTime $date_a, DateTime $date_b){
         
         $day_a = $date_a->format('d');
         $day_b = $date_b->format('d');
