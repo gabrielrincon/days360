@@ -1,3 +1,9 @@
+<?php
+
+/*
+ * Days360 financial function
+ */
+
 class Days360{
    
     public function test(){
@@ -13,6 +19,57 @@ class Days360{
         
     }
     
+    /*
+     * 
+     * This method uses the the US/NASD Method (30US/360) to calculate the days 
+     * between two dates
+     * 
+     * NOTE: to use the reference calculation method 'preserve_excel_compatibility' must be set to false
+     * The default is to preserve compatibility. This means results are comparable to those obtained with
+     * Excel or Calc. This is a bug in Microsoft Office which is preserved for reasons of backward compatibility.
+     * Open Office Calc also
+     * choose to "implement" this bug to be MS-Excel compatible [1].
+     *
+     *   [1] http://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Date_%26_Time_functions#Financial_date_systems
+     *
+     *  Implementation as given by http://en.wikipedia.org/w/index.php?title=360-day_calendar&oldid=546566236 * 
+     * 
+     */
+    public function days360_US_NASD(\DateTime $date_a, \DateTime $date_b)
+    {
+        return $this->days360_US($date_a, $date_b, FALSE);
+    }
+    
+    /*
+     * This method uses the the European method (30E/360) to calculate the days between two dates
+     *
+     * Implementation as given by http://en.wikipedia.org/w/index.php?title=360-day_calendar&oldid=546566236
+     */
+    public function days360_EU(\DateTime $date_a, \DateTime $date_b){
+        
+        $day_a = $date_a->format('d');
+        $day_b = $date_b->format('d');
+        
+        // If either date A or B falls on the 31st of the month, that date will 
+        // be changed to the 30th;
+        if($day_a == 31)
+        {
+            $day_a = 30;
+        }
+        
+        if($day_b == 31)
+        {
+            $day_b = 30;
+        }
+        
+        $days = ($date_b->format('Y') - $date_a->format('Y')) * 360 
+                + ($date_b->format('m') - $date_a->format('m')) * 30
+                +  ($day_b - $day_a);
+        
+        return $days;
+
+    }
+        
     public function days360_US(DateTime $date_a, DateTime $date_b, $preserve_excel_compatibility = true) {
         
         $day_a = $date_a->format('d');
