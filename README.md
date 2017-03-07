@@ -17,38 +17,9 @@ The following table gives an overview on which functions are supported and what 
 
 [![Build Status](https://travis-ci.org/tamaloa/days360.png?branch=master)](https://travis-ci.org/tamaloa/days360) tested on all major ruby versions.
 
+# Traslate to PHP version. Original version Ruby
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'days360'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install days360
-
-## Usage
-```ruby
-
-    class MyFinancialCalculation
-    include Days360
-
-    def interest_using_US_method(from, till)
-      interest_days = days360(from, till)
-      #equals
-      #interest_days = days360_us(from, till)
-
-      interest = balance * interest_rate * (interest_days / 360)
-
-      interest
-    end
-
-```
+See php folder.
 
 ## Notes on DAY360 calculations
 
