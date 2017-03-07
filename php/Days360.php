@@ -1,5 +1,18 @@
 class Days360{
    
+    public function test(){
+        
+        $date1 = new \DateTime('2016-10-10');
+        $date2 = new \DateTime('2021-10-09');
+        for($i = 0; $i < 390; $i++)
+        {
+            $dias = $this->days360_US($date1, $date2);
+            echo "fecha " . $date2->format('Y-m-d') . " dias360 " . $dias . "</br>";
+            $date2->setDate($date2->format('Y'), $date2->format('m'), $date2->format('d')-1);
+        }
+        
+    }
+    
     public function days360_US(DateTime $date_a, DateTime $date_b, $preserve_excel_compatibility = true) {
         
         $day_a = $date_a->format('d');
