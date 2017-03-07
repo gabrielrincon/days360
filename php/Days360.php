@@ -20,6 +20,26 @@ class Days360{
     }
     
     /*
+     * Methods available: US, US_NASD, EU
+     */
+    public function days360(\DateTime $date_a, \DateTime $date_b, $method = 'US') {
+        
+        if($method == 'US')
+        {
+            return $this->days360_US($date_a, $date_b);
+        }
+        else if($method == 'US_NASD')
+        {
+            return $this->days360_US_NASD($date_a, $date_b);
+        }
+        else if($method == 'EU')
+        {
+            return $this->days360_EU($date_a, $date_b);
+        }
+                
+    }
+   
+    /*
      * 
      * This method uses the the US/NASD Method (30US/360) to calculate the days 
      * between two dates
